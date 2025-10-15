@@ -1,0 +1,388 @@
+/* ------------------- */
+/* 🌿 DEFAULT VITE STYLES */
+/* ------------------- */
+#root {
+  width: 100vw;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.billboard-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dbccb8;
+  padding-bottom: -100px;
+}
+
+/* ------------------- */
+/* 🍂 CUSTOM AURORA STYLES */
+/* ------------------- */
+
+/* 🌄 Hero Section — Full Responsive Background */
+.hero-section {
+  background-color: #e8d9c6;
+  min-height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 100px 3rem;
+}
+
+@media (max-width: 992px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 80px 1.5rem;
+  }
+  .hero-img {
+    max-width: 90%;
+    margin-top: 2rem;
+  }
+}
+
+/* ------------------- */
+/* 🍔 Burger button & Overlay */
+/* ------------------- */
+
+.burger-btn {
+  width: 30px;
+  height: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  z-index: 9999;
+}
+
+.burger-btn span {
+  display: block;
+  height: 2px;
+  width: 90%;
+  background-color: #8C6242;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.burger-btn:hover span {
+  background-color: #9B6B43;
+}
+
+/* Turn into X when open */
+.burger-btn.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.burger-btn.open span:nth-child(2) {
+  opacity: 0;
+}
+.burger-btn.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Overlay setup */
+#navOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 20;
+  pointer-events: none;
+}
+
+/* The 3 oblong background layers */
+#navOverlay .layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0%;
+  height: 100%;
+  border-radius: 0 0 0 50%;
+  transition: width 0.5s ease, border-radius 0.5s ease;
+}
+
+#navOverlay .layer:nth-child(1) {
+  background-color: #EEDFCC;
+  transition-delay: 0s;
+}
+#navOverlay .layer:nth-child(2) {
+  background-color: #EBD6BE;
+  transition-delay: 0.1s;
+}
+#navOverlay .layer:nth-child(3) {
+  background-color: #F5EEE6;
+  transition-delay: 0.2s;
+}
+
+/* When opened: panels expand smoothly */
+#navOverlay.show .layer {
+  width: 100%;
+  border-radius: 0;
+  pointer-events: all;
+}
+
+/* Menu content */
+#navOverlay .nav-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.4s ease 0.4s;
+  text-align: center;
+  pointer-events: none;
+}
+
+#navOverlay.show .nav-content {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#navOverlay ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#navOverlay li {
+  margin-bottom: 1rem;
+}
+
+#navOverlay a {
+  text-decoration: none;
+  color: #8C6242;
+  font-size: 1.4rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+#navOverlay a:hover {
+  color: #9B6B43;
+}
+
+/* Loader fade-out */
+#overlayer {
+  transition: opacity 0.5s ease;
+}
+
+/* latest news */
+.latest-news {
+  background-color: #fff;
+}
+
+.news-subtitle {
+  color: #8C6242;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.blog-card {
+  position: relative;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  min-height: 350px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.blog-card:hover {
+  transform: scale(1.03);
+}
+
+.blog-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.blog-card .blog-date {
+  font-size: 0.9rem;
+  color: #ffffffcc;
+  margin-bottom: 8px;
+}
+
+.blog-card .card-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  color: #fff;
+}
+
+/* ------------------- */
+/* 📱 RESPONSIVE FIXES (ADDED BELOW) */
+/* ------------------- */
+
+/* 🌐 Large Tablets and Laptops (≤1200px) */
+@media (max-width: 1200px) {
+  .hero-section {
+    padding: 80px 2rem;
+  }
+}
+
+/* 📱 Tablets (≤992px) */
+@media (max-width: 992px) {
+  .billboard-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 1.5rem;
+  }
+
+  #navOverlay a {
+    font-size: 1.3rem;
+  }
+
+  .blog-card {
+    min-height: 300px;
+  }
+
+  .blog-card .card-title {
+    font-size: 1.4rem;
+  }
+}
+
+/* 📱 Mobile Landscape (≤768px) */
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 1rem;
+  }
+
+  .hero-img {
+    max-width: 85%;
+    margin: 1.5rem auto;
+  }
+
+  #navOverlay .nav-content {
+    width: 90%;
+  }
+
+  #navOverlay a {
+    font-size: 1.2rem;
+  }
+
+  .burger-btn {
+    width: 28px;
+    height: 16px;
+  }
+
+  .blog-card {
+    min-height: 280px;
+  }
+
+  .blog-card .overlay {
+    padding: 15px;
+  }
+
+  .blog-card .card-title {
+    font-size: 1.2rem;
+  }
+}
+
+/* 📱 Mobile Portrait (≤576px) */
+@media (max-width: 576px) {
+  .hero-section {
+    padding: 50px 1rem;
+  }
+
+  .hero-img {
+    max-width: 100%;
+  }
+
+  #navOverlay a {
+    font-size: 1.1rem;
+  }
+
+  .blog-card {
+    min-height: 250px;
+  }
+
+  .blog-card .card-title {
+    font-size: 1rem;
+  }
+
+  .burger-btn {
+    width: 26px;
+    height: 15px;
+  }
+}
+
+/* 🌈 Universal Fixes for Small Screens */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+footer {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  footer .row {
+    text-align: center;
+  }
+  footer .col-md-4,
+  footer .col-md-2 {
+    margin-bottom: 1.5rem;
+  }
+  footer input,
+  footer button {
+    width: 100%;
+  }
+}
