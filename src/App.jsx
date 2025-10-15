@@ -8,80 +8,86 @@ import "./App.css";
 
 
 function App() {
+
+  
    const [modalOpen, setModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
   // 🔼 Top Banner Images with title & subtitle
   const topImages = [
     {
-      src: "/images/61.png",
+      src: `${import.meta.env.BASE_URL}images/61.png`,
       alt: "Media Banner 1",
       subtitle: "March 2025 | Web Development",
       title: "Initial Attempt / First Five Components",
     },
     {
-      src: "/images/71.png",
+      src: `${import.meta.env.BASE_URL}images/71.png`,
       alt: "Media Banner 2",
       subtitle: "April 2025 | Web Development",
       title: "Midterm Project",
     },
   ];
 
-  // 🔽 Gallery Cards
-  const galleryPosts = [
-    {
-      img: "81.jpg",
-      title: "My Brother's Family",
-      date: "May 2024 | Animation",
-    },
-    {
-      img: "91.jpg",
-      title: "My School Uniform",
-      date: "October 2023 | Animation",
-    },
-    {
-      img: "1011.jpg",
-      title: "Bro. Daniel Razon",
-      date: "November 2023 | Animation",
-    },
-  ];
+ // 🔽 Data Arrays
+const galleryPosts = [
+  {
+    img: `${import.meta.env.BASE_URL}images/81.jpg`,
+    title: "My Brother's Family",
+    date: "May 2024 | Animation",
+  },
+  {
+    img: `${import.meta.env.BASE_URL}images/91.jpg`,
+    title: "My School Uniform",
+    date: "October 2023 | Animation",
+  },
+  {
+    img: `${import.meta.env.BASE_URL}images/1011.jpg`,
+    title: "Bro. Daniel Razon",
+    date: "November 2023 | Animation",
+  },
+];
 
-  const openModal = (img) => {
-    setSelectedImage(img);
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setSelectedImage(null);
-    setModalOpen(false);
-  };
-  const skillsData = [
+const skillsData = [
   {
     category: "UI/UX Design",
     title: "Figma, Adobe XD, Wireframing, Prototyping",
-    img: "11.png",
+    img: `${import.meta.env.BASE_URL}images/11.jpg`,
   },
   {
     category: "Web Development",
     title: "HTML, CSS, JavaScript, React",
-    img: "21.png",
+    img: `${import.meta.env.BASE_URL}images/21.jpg`,
   },
   {
     category: "Backend & Tools",
     title: "PHP, Laravel, MySQL, Git, Python, C#",
-    img: "31.png",
+    img: `${import.meta.env.BASE_URL}images/31.jpg`,
   },
   {
     category: "Continuous Learning",
-    title: "I continue to improve my skills through hands-on practice and design challenges.",
-    img: "41.png",
+    title:
+      "I continue to improve my skills through hands-on practice and design challenges.",
+    img: `${import.meta.env.BASE_URL}images/41.jpg`,
   },
   {
     category: "Additional Skills",
     title: "Problem Solving, Collaboration, Agile Methodology",
-    img: "51.png",
+    img: `${import.meta.env.BASE_URL}images/51.jpg`,
   },
 ];
+
+// 🔽 Modal Logic
+const openModal = (img) => {
+  setSelectedImage(img);
+  setModalOpen(true);
+};
+
+const closeModal = () => {
+  setSelectedImage(null);
+  setModalOpen(false);
+};
+
 
  const [scrollIndex, setScrollIndex] = useState(0);
   const visibleCards = 3;
@@ -197,14 +203,16 @@ const testimonials = [
         </div>
       )}
 
-      {/* BILLBOARD / HERO */}
+     {/* BILLBOARD / HERO */}
 <section
   id="billboard"
   className="position-relative d-flex align-items-center"
-  style={{ background: "linear-gradient(160deg, #0d0d0d, #575757ff, #000000)" }}
-
+  style={{
+    background: "linear-gradient(160deg, #0d0d0d, #575757ff, #000000)",
+    overflow: "hidden",
+  }}
 >
-  {/* Header: burger button on top-right */}
+  {/* === Header: Burger Button (UNCHANGED) === */}
   <header
     className="position-absolute"
     style={{
@@ -213,7 +221,7 @@ const testimonials = [
       zIndex: 30,
     }}
   >
-    <button 
+    <button
       className="burger-btn"
       type="button"
       onClick={() => {
@@ -223,109 +231,48 @@ const testimonials = [
         btn.classList.toggle("open");
       }}
       aria-label="Toggle menu"
-      
-    > 
-      <span style={{backgroundColor: "#ffffffff"}}></span>
-      <span style={{backgroundColor: "#ffffffff"}}></span>
-      <span style={{backgroundColor: "#ffffffff"}}></span>
+    >
+      <span style={{ backgroundColor: "#ffffffff" }}></span>
+      <span style={{ backgroundColor: "#ffffffff" }}></span>
+      <span style={{ backgroundColor: "#ffffffff" }}></span>
     </button>
   </header>
 
-  {/* NAV OVERLAY */}
+  {/* === NAV OVERLAY (UNCHANGED) === */}
   <div id="navOverlay">
-    <div className="layer" style={{background:"#ffffffff"}}></div>
-    <div className="layer" style={{background:"#5c5c5cff"}}></div>
-    <div className="layer"style={{background:"#000000"}}></div>
+    <div className="layer" style={{ background: "#ffffffff" }}></div>
+    <div className="layer" style={{ background: "#5c5c5cff" }}></div>
+    <div className="layer" style={{ background: "#000000" }}></div>
 
-    {/* Menu content */}
-<div className="nav-content" >
-  <ul className="list-unstyled" >
-    <li className="mb-3">
-      <a
-        href="#billboard"
-        onClick={() => {
-          document.getElementById("navOverlay").classList.remove("show");
-          document.querySelector(".burger-btn").classList.remove("open");
-        }}
-        style={{color:"white"}}
-      >
-        Billboard
-      </a>
-    </li>
-    <li className="mb-3">
-      <a
-        href="#biography"
-        onClick={() => {
-          document.getElementById("navOverlay").classList.remove("show");
-          document.querySelector(".burger-btn").classList.remove("open");
-        }}
-        style={{color:"white"}}
-      >
-        Biography
-      </a>
-    </li>
-    <li className="mb-3">
-      <a
-        href="#media-gallery"
-        onClick={() => {
-          document.getElementById("navOverlay").classList.remove("show");
-          document.querySelector(".burger-btn").classList.remove("open");
-        }}
-        style={{color:"white"}}
-      >
-        Media Gallery
-      </a>
-    </li>
-    <li className="mb-3">
-      <a
-        href="#featured-projects"
-        onClick={() => {
-          document.getElementById("navOverlay").classList.remove("show");
-          document.querySelector(".burger-btn").classList.remove("open");
-        }}
-        style={{color:"white"}}
-      >
-        Featured Projects
-      </a>
-    </li>
-
-<li className="mb-3">
-      <a
-        href="#resume"
-        onClick={() => {
-          document.getElementById("navOverlay").classList.remove("show");
-          document.querySelector(".burger-btn").classList.remove("open");
-        }}
-        style={{color:"white"}}
-      >
-        Resume Section
-      </a>
-    </li>
-
-    <li className="mb-3">
-      <a
-        href="#skills"
-        onClick={() => {
-          document.getElementById("navOverlay").classList.remove("show");
-          document.querySelector(".burger-btn").classList.remove("open");
-        }}
-        style={{color:"white"}}
-      >
-        Skills/Technical Expertise
-      </a>
-    </li>
-
-        
+    <div className="nav-content">
+      <ul className="list-unstyled">
+        {[
+          ["#billboard", "Billboard"],
+          ["#biography", "Biography"],
+          ["#gallery", "Gallery"],
+          ["#projects", "Projects"],
+          ["#resume", "Resume Section"],
+          ["#skills", "Skills/Technical Expertise"],
+        ].map(([href, label]) => (
+          <li key={label} className="mb-3">
+            <a
+              href={href}
+              onClick={() => {
+                document.getElementById("navOverlay").classList.remove("show");
+                document.querySelector(".burger-btn").classList.remove("open");
+              }}
+              style={{ color: "white" }}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
         <li className="mb-3">
           <a
             href="https://templatesjungle.gumroad.com/l/aurora"
             target="_blank"
             rel="noreferrer"
-            onClick={() => {
-              document.getElementById("navOverlay").classList.remove("show");
-              document.querySelector(".burger-btn").classList.remove("open");
-            }}
-            style={{color:"white"}}
+            style={{ color: "white" }}
           >
             Get PRO Version
           </a>
@@ -334,69 +281,59 @@ const testimonials = [
     </div>
   </div>
 
-  {/* Banner Content inside the background */}
-
-  <div className="container-fluid px-5 py-0">
-    <div className="row align-items-center">
-      {/* Left Column: Text */}
-      <div className="col-sm-12 col-lg-6 d-flex flex-column align-items-start">
-        <div
+  {/* === MAIN HERO CONTENT === */}
+  <div className="container-fluid px-4 px-md-5 py-5">
+    <div className="row align-items-center flex-column-reverse flex-lg-row text-center text-lg-start">
+      {/* LEFT: Text */}
+      <div className="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center align-items-lg-start mt-4 mt-lg-0">
+        <h2
           style={{
-            color: "#ffffffff",
-            fontSize: "3.3rem",
-            margin: 1,
-            padding: 0,
-            lineHeight: "3",
+            color: "#ffffff",
+            fontSize: "2.5rem",
             fontWeight: "bold",
-            marginBottom: "-1.1rem",
-            marginTop:"-12rem",
-            marginLeft:"-0.5rem"
+            marginBottom: "0.3rem",
           }}
         >
-          Elle/Seya
-        </div>
+          Elle / Seya
+        </h2>
 
         <h1
-          className="fw-bold display-2"
           style={{
-            lineHeight: "0",
-            margin: 0,
-            paddingLeft: "4rem",
+            fontSize: "3.5rem",
+            fontWeight: "bold",
             color: "#000000ff",
+            lineHeight: "1.2",
           }}
           data-aos="zoom-in-up"
         >
           Ellissea Montes
         </h1>
 
-        <h1
-          className="fw-bold display-3"
+        <h3
           style={{
-            lineHeight: "2",
-            margin: 0,
-            paddingLeft: "4rem",
-            color: "#1b1a1aff"
-          }}
-          
-        >
-          UI/UX Designer
-        </h1>
-
-        <p
-          className="fs-5"
-          style={{
-            maxWidth: "800px",
-            marginTop: "-1rem",
+            fontSize: "2rem",
+            fontWeight: "600",
+            color: "#1b1a1aff",
             marginBottom: "1rem",
-            lineHeight: "1.5",
-            paddingLeft: "4rem",
-            textAlign: "left",
-            color:"#a79f9fff"
             
           }}
           data-aos="zoom-in-up"
         >
-          A driven and creative individual dedicated to achieving goals through innovative design and thoughtful solutions.
+          UI/UX Designer
+        </h3>
+
+        <p
+          className="fs-5"
+          style={{
+            maxWidth: "600px",
+            lineHeight: "1.6",
+            color: "#a79f9fff",
+            marginBottom: "1.5rem",
+          }}
+          data-aos="zoom-in-up"
+        >
+          A driven and creative individual dedicated to achieving goals through
+          innovative design and thoughtful solutions.
         </p>
 
         <a
@@ -404,158 +341,129 @@ const testimonials = [
           className="btn"
           style={{
             backgroundColor: "#000000",
-            color:"#ffffffff",
+            color: "#ffffffff",
             border: "none",
             borderRadius: "6px",
             padding: "1rem 2.5rem",
             fontSize: "1rem",
-            marginLeft: "4rem",
+            transition: "0.3s ease",
           }}
           data-aos="zoom-in-up"
           onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#ffffffff"; 
-              e.currentTarget.style.color = "#000000";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "#000000"; 
-              e.currentTarget.style.color = "#ffffffff";
-            }}
+            e.currentTarget.style.backgroundColor = "#ffffffff";
+            e.currentTarget.style.color = "#000000";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = "#000000";
+            e.currentTarget.style.color = "#ffffffff";
+          }}
         >
-          Let's Collaborate!
+          Let’s Collaborate!
         </a>
       </div>
 
-      {/* Right Column: Image */}
-      <div
-        className="col-sm-12 d-flex justify-content-center align-items-start"
-        style={{
-          flex: "0 0 45.8333%",
-          maxWidth: "45.8333%",
-          
-  
-        }}
-      >
+      {/* RIGHT: Image */}
+      <div className="col-12 col-lg-6 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
         <img
-          src="/images/111.png"
+          src={`${import.meta.env.BASE_URL}images/111.png`}
           alt="Ellissea portrait"
           className="img-fluid rounded-3"
-          style={{ maxWidth: "105%", height: "600px", marginTop:"1rem" }}
+          style={{
+            width: "100%",
+            maxWidth: "480px",
+            height: "auto",
+          }}
           data-aos="zoom-in-up"
         />
       </div>
     </div>
   </div>
-</section>
 
-{/* Testimonials */}
-<section id="biography" className="py-5" style={{ backgroundColor: "#5c5c5cff" }}>
-  <div className="container-fluid px-5">
-    <p
-      style={{
-        color: "#a7a3a0ff",
-        marginBottom: "5px",
-        textAlign: "left",
-        paddingLeft: "4rem"
-      }}
-    >
-      A Glimpse Into My Journey
-    </p>
-    <h2
-      className="mb-5 text-start"
-      style={{ fontSize: "3rem", fontWeight: "bold",paddingLeft: "4rem", color:"black" }}
-    >
-      Biography
-    </h2>
+  {/* === RESPONSIVE STYLES === */}
+  <style>{`
+    @media (max-width: 992px) {
+      #billboard h1 {
+        font-size: 2.8rem;
+      }
+      #billboard h2 {
+        font-size: 2rem;
+      }
+      #billboard h3 {
+        font-size: 1.5rem;
+      }
+      #billboard p {
+        font-size: 1rem;
+        max-width: 500px;
+      }
+      #billboard .btn {
+        font-size: 0.95rem;
+        padding: 0.8rem 1.8rem;
+      }
+    }
 
-    {/* Testimonial Slider */}
+    @media (max-width: 576px) {
+      #billboard {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+      }
+      #billboard h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+      }
+      #billboard h2 {
+        font-size: 1.4rem;
+      }
+      #billboard h3 {
+        font-size: 1.1rem;
+      }
+      #billboard p {
+        font-size: 0.95rem;
+        max-width: 90%;
+      }
+      #billboard img {
+        max-width: 300px;
+      }
+    }
+  `}</style>
+</section >
+
+{/* ====== TESTIMONIALS / BIOGRAPHY SLIDER ====== */}
+<div id="biography" style={{ backgroundColor: "#5c5c5cff", padding: "3rem 1rem" }}>
+  <p style={{ color: "#a7a3a0ff", marginBottom: "5px", textAlign: "left", paddingLeft: "2rem" }}>
+    A Glimpse Into My Journey
+  </p>
+  <h2 style={{ fontSize: "3rem", fontWeight: "bold", textAlign: "left",paddingLeft: "2rem", color: "white", marginBottom: "2rem" }}>
+    Biography
+  </h2>
+
+  {/* Slider */}
+  <div className="slider-container">
     <div
-      style={{
-        position: "relative",
-        margin: "0 auto",
-        maxWidth: "1100px",
-        width: "100%",
-      }}
+      className="testimonials-wrapper"
+      style={{ transform: `translateX(-${(activeIndex * (100 / 1.5))}%)` }} // 3 cards visible
     >
-      <div
-        className="d-flex overflow-hidden"
-        style={{
-          width: "100%",
-        }}
-      >
-        <div
-          className="d-flex"
-          style={{
-            transform: `translateX(-${activeIndex * (100 / 0.95)}%)`,
-            transition: "transform .5s ease-in-out",
-            width: "31.3%",
-            gap: ".5rem",
-            height: "430px",
-          }}
-        >
-          {[...Array(7)].map((_, i) => {
-            const testimonial = testimonials[i % testimonials.length];
-            return (
-              <div
-                key={i}
-                className="card shadow-sm p-5 text-start"
-                style={{
-                  borderRadius: "10px",
-                  minWidth: "105%",
-                  boxSizing: "border-box",
-                  whiteSpace: "pre-line" 
-                }}
-              >
-                <p
-                  style={{
-                    fontFamily: "'Nunito', sans-serif",
-                    color: "#807676ff",
-                    whiteSpace: "pre-line" 
-                  }}
-
-                >
-                  {testimonial.text}
-                </p>
-                <h3 className="mt-0">{testimonial.name}</h3>
-                <span style={{ color: "#575250ff" }}>{testimonial.title}</span>
-              </div>
-            );
-          })}
+      {testimonials.map((t, i) => (
+        <div key={i} className="card">
+          <p style={{ color: "#807676ff", fontSize: "1rem", lineHeight: "1.6" }}>{t.text}</p>
+          <h3 style={{ fontSize: "1.2rem", fontWeight: "bold", color: "#000" }}>{t.name}</h3>
+          <span style={{ color: "#575250ff", fontSize: "0.95rem" }}>{t.title}</span>
         </div>
-      </div>
-
-      {/* Dots */}
-      <div className="d-flex justify-content-center mt-3">
-        {[...Array(5)].map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setActiveIndex(i)}
-            style={{
-              background: "none",
-              border: "none",
-              padding: 0,
-              margin: "0 4px",
-              cursor: "pointer",
-            }}
-            aria-label={`Go to testimonial ${i + 1}`}
-          >
-            <span
-              style={{
-                display: "inline-block",
-                width: "8px",
-                height: "8px",
-                borderRadius: "50%",
-                backgroundColor: i === activeIndex ? "#000000ff" : "#ccc",
-              }}
-            ></span>
-          </button>
-        ))}
-      </div>
+      ))}
     </div>
   </div>
-</section>
+
+  {/* Dots */}
+  <div className="dots-container">
+    {Array.from({ length: Math.max(testimonials.length - 3 + 1, 0) }).map((_, i) => (
+      <button key={i} onClick={() => setActiveIndex(i)}>
+        <span className={i === activeIndex ? "active" : ""}></span>
+      </button>
+    ))}
+  </div>
+</div>
 
 {/* Media Gallery */}
- <section id="media-gallery" className="latest-news py-5">
+ <section id="gallery" className="latest-news py-5">
       <div className="container-fluid px-5">
         {/* Header */}
         <h2
@@ -629,179 +537,134 @@ const testimonials = [
         </div>
 
         {/* 🔽 Gallery Cards with Click-to-Preview */}
-        <div className="row">
-          {galleryPosts.map((post, i) => (
-            <div className="col-sm-6 col-lg-4 mb-4" key={i}>
-              <div
-                className="card blog-card text-white"
-                style={{
-                  backgroundImage: `url(/images/${post.img})`,
-                  height: "600px",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  borderRadius: "0.25rem",
-                  cursor: "pointer",
-                }}
-                onClick={() => openModal(`/images/${post.img}`)}
-              >
-                <div
-                  className="overlay d-flex flex-column justify-content-end p-3"
-                  style={{
-                    height: "100%",
-                    background: "rgba(0, 0, 0, 0.4)",
-                    borderRadius: "0.25rem",
-                  }}
-                >
-                  <small className="blog-date">{post.date}</small>
-                  <h4 className="card-title">{post.title}</h4>
-                </div>
-              </div>
-            </div>
-          ))}
+<div className="row">
+  {galleryPosts.map((post, i) => (
+    <div className="col-sm-6 col-lg-4 mb-4" key={i}>
+      <div
+        className="card blog-card text-white"
+        style={{
+          backgroundImage: `url(${post.img})`,
+          height: "600px",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          borderRadius: "0.25rem",
+          cursor: "pointer",
+        }}
+        onClick={() => openModal(post.img)}
+      >
+        <div
+          className="overlay d-flex flex-column justify-content-end p-3"
+          style={{
+            height: "100%",
+            background: "rgba(0, 0, 0, 0.4)",
+            borderRadius: "0.25rem",
+          }}
+        >
+          <small className="blog-date">{post.date}</small>
+          <h4 className="card-title">{post.title}</h4>
         </div>
-
-        {/* 🔍 Fullscreen Image Modal */}
-        {modalOpen && selectedImage && (
-          <div
-            className="modal-backdrop"
-            onClick={closeModal}
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: "rgba(0, 0, 0, 0.8)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              zIndex: 9999,
-            }}
-          >
-            <img
-              src={selectedImage}
-              alt="Preview"
-              style={{
-                maxHeight: "90%",
-                maxWidth: "90%",
-                borderRadius: "10px",
-              }}
-              onClick={(e) => e.stopPropagation()}
-            />
-            <button
-              onClick={closeModal}
-              style={{
-                position: "absolute",
-                top: "20px",
-                right: "30px",
-                fontSize: "2rem",
-                color: "#fff",
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              &times;
-            </button>
-          </div>
-        )}
       </div>
-    </section>
+    </div>
+  ))}
+</div>
 
-
-{/* Featured Projects*/}
-      <section id="featured-projects" className="py-5" style={{ color:"black", backgroundColor: "#5c5c5cff" }}>
-  <div className="container-fluid px-5">
-    <p
+{/* 🔍 Fullscreen Image Modal */}
+{modalOpen && selectedImage && (
+  <div
+    className="modal-backdrop"
+    onClick={closeModal}
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: "rgba(0, 0, 0, 0.8)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 9999,
+    }}
+  >
+    <img
+      src={selectedImage}
+      alt="Preview"
       style={{
-        color: "#a7a3a0ff",
-        marginBottom: "5px",
-        textAlign: "left",
-        fontWeight: "1",
-        paddingLeft: "4rem"
+        maxHeight: "90%",
+        maxWidth: "90%",
+        borderRadius: "10px",
+      }}
+      onClick={(e) => e.stopPropagation()}
+    />
+    <button
+      onClick={closeModal}
+      style={{
+        position: "absolute",
+        top: "20px",
+        right: "30px",
+        fontSize: "2rem",
+        color: "#fff",
+        background: "none",
+        border: "none",
+        cursor: "pointer",
       }}
     >
-      Showcasing a selection of our most significant work.
-    </p>
+      &times;
+    </button>
+  </div>
+)}
+</div>
+</section>
 
-    <h1
-      className="mb-5 text-start"
-      style={{ fontSize: "3rem", fontWeight: "bold",paddingLeft: "4rem" }}
-    >
-      Featured Projects
-    </h1>
+{/* Projects */}
+<section
+  id="projects"
+  className="py-5"
+  style={{ color: "black", backgroundColor: "#5c5c5cff" }}
+>
+  <div className="container px-4 px-md-5">
+    <p className="fp-subtitle">Showcasing a selection of my most significant work.</p>
 
-    <div className="row gy-3 gx-4">
+    <h1 style={{color:"white"}} className="mb-5 text-start fp-title">Featured Projects</h1>
+
+    <div className="row gy-4 gx-4">
       {[
-        {
-          name: "Turning Concepts into Real Work",
-          title: "Bringing Ideas to Life",
-          description: "Every project is a chance for me to put my ideas into practice. I focus on creativity while keeping clear goals in mind, so the work reflects both my skills and my passions.",
-        },
-        {
-          name: "Laptop & Mobile Development",
-          title: "Tools I Rely On",
-          description: "I develop and test projects on both my laptop and mobile devices. This helps me make sure everything works smoothly for different users.",
-        },
-        {
-          name: "GitHub & Live Demos",
-          title: "Sharing My Work",
-          description: "I upload my projects to GitHub Pages and include repository and live demo links. It’s important for me that others can see and interact with my work.",
-        },
-        {
-          name: "Overcoming Challenges",
-          title: "Learning on My Own",
-          description: "Working independently has its challenges, especially since I’m naturally shy. I’ve learned to take things step by step and trust my own learning process.",
-        },
-        {
-          name: "Patience & Consistency",
-          title: "Staying Focused",
-          description: " sometimes struggle to stay focused or remember steps, but I’ve learned that patience, careful attention, and consistent practice really make a difference.",
-        },
-        {
-          name: "Trial, Error, and Growth",
-          title: "Learning by Doing",
-          description: "Making mistakes is part of learning. By experimenting, reflecting, and adjusting, I’ve become more confident and capable in my skills.",
-        },
+        { name: "Turning Concepts into Real Work", title: "Bringing Ideas to Life", description: "Every project is a chance for me to put my ideas into practice. I focus on creativity while keeping clear goals in mind, so the work reflects both my skills and my passions." },
+        { name: "Laptop & Mobile Development", title: "Tools I Rely On", description: "I develop and test projects on both my laptop and mobile devices. This helps me make sure everything works smoothly for different users." },
+        { name: "GitHub & Live Demos", title: "Sharing My Work", description: "I upload my projects to GitHub Pages and include repository and live demo links. It’s important for me that others can see and interact with my work." },
+        { name: "Overcoming Challenges", title: "Learning on My Own", description: "Working independently has its challenges, especially since I’m naturally shy. I’ve learned to take things step by step and trust my own learning process." },
+        { name: "Patience & Consistency", title: "Staying Focused", description: "I sometimes struggle to stay focused or remember steps, but I’ve learned that patience, careful attention, and consistent practice really make a difference." },
+        { name: "Trial, Error, and Growth", title: "Learning by Doing", description: "Making mistakes is part of learning. By experimenting, reflecting, and adjusting, I’ve become more confident and capable in my skills." }
       ].map((award, i) => (
-        <div className="col-4 md-4 mb-2" key={i}>
-          <div
-            className="card h-100 text-start p-4 shadow-sm"
-            data-aos="zoom-in-up"
-            data-aos-delay={i * 200}
-            style={{
-              borderRadius: "20px",
-              marginInlineStart:"4rem",
-              
-            }}
-          >
-            <span
-              style={{
-                color: "#a7a3a0ff",
-                fontSize: "1rem",
-                marginBottom: "-1rem",
-                
-              }}
-            >
-              {award.name}
-            </span>
-            <h5
-              className="mt-3"
-              style={{
-                fontSize: "25px",
-              }}
-            >
-              {award.title}
-            </h5>
-            <p className="text-muted mb-0" style={{height:"100px"}}>{award.description}</p>
-          </div>
+        <div
+          className="col-12 col-md-6 col-lg-4 d-flex"
+          key={i}
+          data-aos="zoom-in-up"
+          data-aos-delay={i * 120}
+        >
+          <article className="featured-card card flex-fill shadow-sm">
+            <header className="card-top">
+              <span className="card-tag">{award.name}</span>
+              <h5 className="card-title">{award.title}</h5>
+            </header>
+
+            {/* flexible body: grows and scrolls if content is long */}
+            <div className="card-body fp-card-body">
+              <p className="text-muted mb-0">{award.description}</p>
+            </div>
+
+            {/* optional footer (keeps card heights consistent) */}
+            <footer className="card-footer mt-3" aria-hidden="true" />
+          </article>
         </div>
       ))}
     </div>
   </div>
 </section>
 
-<section id="resume" className="py-5" style={{ backgroundColor: "#ffffffff" }}>
+
+{/* resume */}
+<section id="resume" className="py-5" style={{ backgroundColor: "#fff" }}>
   <div className="container text-center">
     <h2 className="mb-3" style={{ fontWeight: "bold", fontSize: "2.5rem" }}>
       Resume Section
@@ -811,340 +674,297 @@ const testimonials = [
     </p>
 
     <a
-      href="/pdf/Resume.pdf" // <-- replace with your actual PDF path
-      download
-      className="btn px-5 py-3"
-      style={{
-        fontSize: "1rem",
-        borderRadius: "6px",
-        transition: "0.3s ease",
-        backgroundColor:"black",
-        color:"white",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = "#727272ff";
-        e.target.style.color = "black";
-        
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.backgroundColor = "#000";
-        e.target.style.color = "white";
-        
-      }}
-    >
-      <i className="fas fa-download me-2"></i> Download Resume (PDF)
-    </a>
+  href={`${import.meta.env.BASE_URL}pdf/Resume2.pdf`}
+  target="_blank"
+  rel="noopener noreferrer"
+  download="Ellissea_Montes_Resume.pdf"
+  className="btn px-5 py-3"
+  style={{
+    fontSize: "1rem",
+    borderRadius: "6px",
+    transition: "0.3s ease",
+    backgroundColor: "black",
+    color: "white",
+  }}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.backgroundColor = "#727272";
+    e.currentTarget.style.color = "black";
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.backgroundColor = "#000";
+    e.currentTarget.style.color = "white";
+  }}
+>
+  <i className="fas fa-download me-2"></i> Download Resume (PDF)
+</a>
+
   </div>
 </section>
 
 
-{/* Skills */}
-<section id="skills" className="py-5">
-        <div className="container-fluid px-5" >
-          <div 
-            className="d-flex justify-content-between align-items-center mb-4 flex-wrap"
-            style={{ paddingLeft: "4rem", paddingRight: "4rem", color:"black"}}
-          >
-            <div className="d-flex align-items-center gap-3 flex-wrap"
-            style={{ paddingLeft: "4rem", paddingRight: "4rem", color:"black"}}>
-              <h2
-                className="mb-0"
-                style={{
-                  fontSize: "3rem",
-                  fontWeight: "bold",
-                }}
-              >
-                Skills/Technical Expertise
-              </h2>
-            </div>
+<section id="skills" className="py-5" style={{ backgroundColor: "#fff" }}>
+  <div className="container px-5">
+    <h2
+      className="text-center mb-5"
+      style={{ fontSize: "2.5rem", fontWeight: "bold", color: "#111" }}
+    >
+      Skills / Technical Expertise
+    </h2>
 
-            <div className="d-flex gap-2">
-              <button style={{color:"black"}}
-                className="btn btn-outline-secondary rounded-circle"
-                type="button"
-                onClick={() => handleScroll("left")}
-                disabled={scrollIndex === 0}
-              >
-                &larr;
-              </button>
-              <button style={{color:"black"}}
-                className="btn btn-outline-secondary rounded-circle"
-                type="button"
-                onClick={() => handleScroll("right")}
-                disabled={scrollIndex >= maxIndex}
-              >
-                &rarr;
-              </button>
-            </div>
-          </div>
-
-          <div className="overflow-hidden">
-            <div
-              className="d-flex"
-              style={{
-                transition: "transform 0.5s ease-in-out",
-                transform: `translateX(-${(scrollIndex * 100) / visibleCards}%)`,
-                
-              }}
-            >
-              {skillsData.map((skill, i) => (
-                <div
-                  key={i}
-                  style={{
-                    minWidth: `${100 / visibleCards}%`,
-                    boxSizing: "border-box",
-                    padding: "1rem",
-                  }}
-                >
-                  <div className="card border-0 shadow-sm h-100">
-                    <img
-                      src={`/images/${skill.img}`}
-                      alt={skill.category}
-                      className="card-img-top"
-                      style={{ maxHeight: "150px", objectFit: "contain" }}
-                    />
-                    <div className="card-body text-start">
-                      <h6
-                        style={{
-                          color: "#808080ff",
-                          fontSize: "0.9rem",
-                          marginBottom: "0.5rem",
-                          letterSpacing: "0.5px",
-                        }}
-                      >
-                        {skill.category}
-                      </h6>
-                      <p className="card-text" style={{ fontSize: "1.1rem" }}>
-                        {skill.title}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+    <div className="row text-center g-4">
+      {/* --- Skill 1 --- */}
+      <div className="col-md-4 col-sm-6">
+        <div className="p-4 border rounded-4 shadow-sm h-100">
+          <i className="fab fa-figma fa-3x mb-3"></i>
+          <h5 className="fw-bold">Figma</h5>
+          <p className="text-muted small">UI/UX Design, Wireframes, Prototyping</p>
         </div>
-      </section>
+      </div>
 
+      {/* --- Skill 2 --- */}
+      <div className="col-md-4 col-sm-6">
+        <div className="p-4 border rounded-4 shadow-sm h-100">
+          <i className="fab fa-html5 fa-3x mb-3 text-danger"></i>
+          <h5 className="fw-bold">HTML5</h5>
+          <p className="text-muted small">Semantic and Accessible Structure</p>
+        </div>
+      </div>
+
+      {/* --- Skill 3 --- */}
+      <div className="col-md-4 col-sm-6">
+        <div className="p-4 border rounded-4 shadow-sm h-100">
+          <i className="fab fa-css3-alt fa-3x mb-3 text-primary"></i>
+          <h5 className="fw-bold">CSS3</h5>
+          <p className="text-muted small">Responsive Design, Flexbox, Grid</p>
+        </div>
+      </div>
+
+      {/* --- Skill 4 --- */}
+      <div className="col-md-4 col-sm-6">
+        <div className="p-4 border rounded-4 shadow-sm h-100">
+          <i className="fab fa-js-square fa-3x mb-3 text-warning"></i>
+          <h5 className="fw-bold">JavaScript</h5>
+          <p className="text-muted small">Dynamic UI and Interactivity</p>
+        </div>
+      </div>
+
+      {/* --- Skill 5 --- */}
+      <div className="col-md-4 col-sm-6">
+        <div className="p-4 border rounded-4 shadow-sm h-100">
+          <i className="fab fa-react fa-3x mb-3 text-info"></i>
+          <h5 className="fw-bold">React</h5>
+          <p className="text-muted small">Component-Based Frontend Framework</p>
+        </div>
+      </div>
+
+      {/* --- Skill 6 --- */}
+      <div className="col-md-4 col-sm-6">
+        <div className="p-4 border rounded-4 shadow-sm h-100">
+          <i className="fab fa-github fa-3x mb-3"></i>
+          <h5 className="fw-bold">GitHub</h5>
+          <p className="text-muted small">Version Control and Collaboration</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       
 
-
-      {/* FOOTER */}
+{/* FOOTER */}
 <footer
   id="footer"
   className="padding-large"
   style={{
-    backgroundColor: "#000000",
-    color: "#ffffffff",
-    textAlign: "left", // all text left-aligned by default
+    backgroundColor: "#000",
+    color: "#fff",
+    textAlign: "left",
+    padding: "60px 20px",
   }}
 >
-  <div className="container-lg">
-    <div className="row align-items-start">
-      {/* Left: Logo and Contact */}
-      <div className="footer-menu col-md-4 mb-4 mb-md-0">
-        <div className="footer-intro">
-  <h1 className="footer-logo mb-0" style={{fontSize:"5rem", cursor: "pointer",}} onClick={() =>
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth", 
-            })
-          }
-        >Elle/Seya</h1>
-</div>
-        <div className="footer-address mt-3">
-          <p>
-            Just feel free to contact if you wanna collaborate with me,
-            or simply have a conversation.
-          </p>
-          <div className="mail-address">
-  <a
-    
-    className="fs-2 text-decoration-underline"
-    style={{ color: "#ffffffff" }}
-  >
-    montes.ellissea.pasillos@gmail.com
-  </a>
-</div>
-        </div>
-      </div>
-
-      
-   
-      
-       {/* Center: Menu 2 */}
-      
-      <div className="footer-menu col-6 col-md-1 mb-4 mb-md-0">
-        <ul className="list-unstyled m-0">
-          {[""].map((item, i) => (
-            <li key={i}>
-              <a
-                href={`#${item.toLowerCase()}`}
-                style={{ color: "#ffffffff", marginLeft:"2rem", textDecoration: "none" }}
-              >
-                {item}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-      
-      
-          {/* Center: Menu 1 */}
-      
-      <div className="footer-menu col-6 col-md-3 mb-4 mb-md-0">
-        <ul className="list-unstyled m-0">
-          {["Billboard", "Biography", "Media Gallery", "Featured Projects", "Resume","Skills"].map((item, i) => (
-            <li key={i}>
-              <a
-                href={`#${item.toLowerCase()}`}
-                style={{ color: "#ffffffff", marginLeft:"2rem", textDecoration: "none" }}
-              >
-                {item}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-     
-
-      <div className="footer-menu col-md-4 text-center">
-  <div className="subscribe">
-    <p className="text-start">
-      Feel free to reach out for freelance work, design help, or feedback.
-    </p>
-    <input
-      className="rounded-2 form-control mb-2 text-center"
-      type="text"
-      name="email"
-      placeholder="Write Your Email Address"
-      style={{ maxWidth: "100%" }}
-    />
-    <button
-      className="fw-bold border-0 w-100"
+  <div className="container">
+    <div
+      className="row"
       style={{
-        backgroundColor: "#252729ff", // dark gray
-        color: "#FFFFFF",
-        transition: "0.3s ease",
-        padding: "10px",
-        borderRadius: "6px",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = "#393a3bff"; // lighter gray
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.backgroundColor = "#252729ff"; // back to dark gray
-      }}
-      onClick={() => {
-        window.open(
-          "https://mail.google.com/mail/u/0/#inbox?compose=VpCqJKkMvWBtdMNTpQhjtdDjKpWNkSwnNtgSxzFMzkhpWPmKZJQXgHlQhZhMVzmlMgWLwNG",
-          "_blank"
-        );
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        gap: "40px 20px",
       }}
     >
-      Send Message
-    </button>
-  </div>
-</div>
+      {/* Left: Logo and Contact */}
+      <div className="col-md-4" style={{ flex: "1 1 250px" }}>
+        <h1
+          className="footer-logo mb-0"
+          style={{
+            fontSize: "3rem",
+            cursor: "pointer",
+          }}
+          onClick={() =>
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            })
+          }
+        >
+          Elle/Seya
+        </h1>
+        <p style={{ marginTop: "1rem" }}>
+          Just feel free to contact if you wanna collaborate with me,
+          or simply have a conversation.
+        </p>
+        <a
+          href="mailto:montes.ellissea.pasillos@gmail.com"
+          className="fs-6 text-decoration-underline"
+          style={{ color: "#fff", wordBreak: "break-all" }}
+        >
+          montes.ellissea.pasillos@gmail.com
+        </a>
+      </div>
 
+      {/* Center Menu 1 */}
+      <div className="col-md-3" style={{ flex: "1 1 150px" }}>
+        <ul className="list-unstyled">
+          {[
+            "Billboard",
+            "Biography",
+            "Gallery",
+            "Projects",
+            "Resume",
+            "Skills",
+          ].map((item, i) => (
+            <li key={i} style={{ marginBottom: "8px" }}>
+              <a
+                href={`#${item.toLowerCase()}`}
+                style={{
+                  color: "#fff",
+                  textDecoration: "none",
+                  transition: "0.3s",
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.color = "#ccc")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.color = "#fff")
+                }
+              >
+                {item}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Right: Subscribe */}
+      <div
+        className="col-md-4"
+        style={{
+          flex: "1 1 300px",
+          textAlign: "center",
+        }}
+      >
+        <p style={{ textAlign: "center", marginBottom: "10px" }}>
+          Feel free to reach out for freelance work, design help, or feedback.
+        </p>
+        <input
+          className="form-control mb-2"
+          type="text"
+          placeholder="Write Your Email Address"
+          style={{
+            maxWidth: "100%",
+            borderRadius: "6px",
+            padding: "10px",
+            textAlign: "center",
+            margin: "0 auto",
+          }}
+        />
+        <button
+          className="fw-bold border-0"
+          style={{
+            backgroundColor: "#252729",
+            color: "#FFFFFF",
+            transition: "0.3s ease",
+            padding: "10px 20px",
+            borderRadius: "6px",
+            width: "100%",
+            maxWidth: "100%",
+          }}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.backgroundColor = "#393a3b")
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.backgroundColor = "#252729")
+          }
+          onClick={() => {
+            window.open(
+              "https://mail.google.com/mail/u/0/#inbox?compose=VpCqJKkMvWBtdMNTpQhjtdDjKpWNkSwnNtgSxzFMzkhpWPmKZJQXgHlQhZhMVzmlMgWLwNG",
+              "_blank"
+            );
+          }}
+        >
+          Send Message
+        </button>
+      </div>
     </div>
   </div>
 </footer>
 
-{/* FOOTER BOTTOM WITH SOCIAL ICONS LEFT AND CREDIT RIGHT */}
-      <div
-        style={{
-          marginTop: "1px",
-          paddingTop: "20px",
-          paddingBottom: "20px",
-          backgroundColor: "#000000",
-          color: "#fff",
-        }}
+{/* FOOTER BOTTOM */}
+<div
+  style={{
+    marginTop: "1px",
+    padding: "20px 10px",
+    backgroundColor: "#000",
+    color: "#fff",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: "15px",
+    textAlign: "center",
+  }}
+>
+  {/* Social Icons */}
+  <div style={{ display: "flex", gap: "20px", justifyContent: "center" }}>
+    {[
+      { icon: "facebook-f", link: "https://www.facebook.com/crizella7" },
+      { icon: "instagram", link: "https://www.instagram.com/miiikasae/" },
+      { icon: "figma", link: "https://www.figma.com/@ellisseamontes" },
+      { icon: "github", link: "https://github.com/elrizeyah" },
+      {
+        icon: "linkedin-in",
+        link: "https://www.linkedin.com/in/ellissea-montes-66b31b301/",
+      },
+      {
+        icon: "udemy",
+        link: "https://www.udemy.com/user/ellissea-pasillos-montes-2/",
+      },
+    ].map((social, i) => (
+      <a
+        key={i}
+        href={social.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ color: "#fff", fontSize: "18px" }}
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "0 15px",
-            flexWrap: "wrap",
-          }}
-        >
-          {/* Left: Social Icons */}
-<div style={{ display: "flex", gap: "30px" }}>
-  <a
-    href="https://www.facebook.com/crizella7"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ color: "#ffffff", fontSize: "18px" }}
-  >
-    <i className="fab fa-facebook-f"></i>
-  </a>
+        <i className={`fab fa-${social.icon}`}></i>
+      </a>
+    ))}
+  </div>
 
-  <a
-    href="https://www.instagram.com/miiikasae/"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ color: "#ffffff", fontSize: "18px" }}
-  >
-    <i className="fab fa-instagram"></i>
-  </a>
+  {/* Credit */}
+  <p style={{ margin: 0, fontSize: "0.9rem" }}>
+    HTML Template by:{" "}
+    <a
+      href="https://templatesjungle.com"
+      target="_blank"
+      rel="noreferrer"
+      style={{ color: "#DCCDBC", textDecoration: "underline" }}
+    >
+      TemplatesJungle
+    </a>
+  </p>
 
-  <a
-    href="https://www.figma.com/@ellisseamontes"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ color: "#ffffff", fontSize: "18px" }}
-  >
-    <i className="fab fa-figma"></i>
-  </a>
-
-  <a
-    href="https://github.com/elrizeyah"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ color: "#ffffff", fontSize: "18px" }}
-  >
-    <i className="fab fa-github"></i>
-  </a>
-
-  <a
-    href="https://www.linkedin.com/in/ellissea-montes-66b31b301/"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ color: "#ffffff", fontSize: "18px" }}
-  >
-    <i className="fab fa-linkedin-in"></i>
-  </a>
-
-  <a
-    href="https://www.udemy.com/user/ellissea-pasillos-montes-2/"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ color: "#ffffff", fontSize: "18px" }}
-  >
-    <i className="fab fa-udemy"></i>
-  </a>
-</div>
-
-
-          {/* Right: HTML Template Credit */}
-          <p style={{ margin: 0 }}>
-            HTML Template by:{" "}
-            <a
-              href="https://templatesjungle.com"
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: "#DCCDBC", textDecoration: "underline"}}
-            >
-              TemplatesJungle
-            </a>
-          </p>
-        </div>
       </div>
     </div>
   );

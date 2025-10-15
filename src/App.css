@@ -1,6 +1,137 @@
 /* ------------------- */
 /* 🌿 DEFAULT VITE STYLES */
 /* ------------------- */
+
+/* Slider container */
+.slider-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.testimonials-wrapper {
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.5s ease;
+}
+
+.testimonials-wrapper .card {
+  border-radius: 10px;
+  background-color: #fff;
+  box-sizing: border-box;
+  white-space: pre-line;
+  flex-shrink: 0;
+  padding: 1rem;
+}
+
+.dots-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 0.5rem;
+}
+
+.dots-container button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.dots-container span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+
+.dots-container span.active {
+  background-color: #000;
+}
+
+/* Responsive widths */
+@media (min-width: 992px) {
+  .testimonials-wrapper .card {
+    flex: 0 0 calc(100% / 3);
+  }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+  .testimonials-wrapper .card {
+    flex: 0 0 calc(100% / 2);
+  }
+}
+
+@media (max-width: 575px) {
+  .testimonials-wrapper .card {
+    flex: 0 0 100%;
+  }
+}
+
+/* Featured Projects styles */
+.fp-subtitle {
+  color: #a7a3a0ff;
+  margin-bottom: 5px;
+  text-align: left;
+  font-weight: 300;
+  padding-left: 1rem;
+}
+
+.fp-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  padding-left: 1rem;
+}
+
+/* card container */
+.featured-card {
+  border-radius: 20px;
+  background: #fff;
+  padding: 1.25rem;            /* same as p-4 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;      /* ensure padding included in width */
+  width: 100%;
+  /* no max-width here so it fits small screens */
+}
+
+/* top area */
+.card-top .card-tag {
+  color: #a7a3a0ff;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.card-top .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+}
+
+/* body: allow to grow and scroll without breaking layout */
+.fp-card-body {
+  flex: 1 1 auto;              /* allow growth */
+  min-height: 0;               /* IMPORTANT for children to scroll inside flexbox */
+  overflow: auto;              /* if content too long, it will scroll inside card body */
+}
+
+/* ensure text wraps and never spills */
+.fp-card-body p {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* small screen tweaks */
+@media (max-width: 576px) {
+  .fp-title { font-size: 1.6rem; padding-left: 0.75rem; }
+  .fp-subtitle { padding-left: 0.75rem; }
+  .featured-card { padding: 1rem; border-radius: 14px; }
+}
+
 #root {
   width: 100vw;
   margin: 0 auto;
